@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from .models import Stuff, MyUser
+from StuffTracker.models import Stuff, MyUser
 # Create your tests here.
 """
 Write a system test using Client that makes sure that on a successful login the correct user's item list is displayed. Load the test database with records to support your test.
