@@ -42,3 +42,27 @@ class LoginList(TestCase):
             for j in resp.context["things"]:
                 self.assertIn(j,self.thingList[i],"list contains an extra item, user: " + i)
 
+class LoginFail(TestCase):
+
+    monkey = None
+    thingList = None
+
+    def setUp(self):
+        #completed
+        self.monkey = Client()
+        self.thingList = {"one": ["cat", "dog"], "two": ["cake"]}
+        #fill test database
+        for i in self.thingList.keys():
+            temp = MyUser(name=i, password=i)
+            temp.save()
+            for j in self.thingList[i]:
+                Stuff(name=j, owner=temp).save()
+                
+    #test methods should confirm correct error message is displayed when a bad password is entered. 
+    #I had separate tests for no password, someone else's password
+
+
+class AddItem(TestCase):
+    pass
+    #need to create database in setup
+    #confirm that after an add item form is submitted, that the new item is in the database and appears in the response webpage
